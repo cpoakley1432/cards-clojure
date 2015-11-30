@@ -20,8 +20,23 @@
 (defn flush? [hand]
   (= 1 (count (set (map :suit hand)))))
 
+(defn numbers [hand]
+  (sort > (map second (frequencies (map second hand)))))
+
+(defn n-of-a-kind? [n hand]
+  (= n (first (numbers hand))))
+
+(defn two-pair? [hand]
+  (= '(2 2) (take 2 (numbers hand))))
+
+(defn straight? [hand]
+  (let [[min-value :as sorted] (sort (map :rank hand))] (= sorted (take 4 (iterate inc min-value)))))
+
 (defn -main [& args]
-  (let [deck (create-deck)
-        hands (create-hands deck)
-        hands (filter flush? hands)]
-    println (count hands)))
+  (time (let [deck (create-deck)
+         hands (create-hands deck)
+         hands (filter flush? hands)
+         hands (filter n-of-a-kind? hands)
+         hands (filter two-pair? hands)
+         hands (filter straight? hands)]
+     println (count hands))))
