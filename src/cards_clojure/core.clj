@@ -33,7 +33,7 @@
   (let [[min-value :as sorted] (sort (map :rank hand))] (= sorted (take 4 (iterate inc min-value)))))
 
 (defn staight-flush? [hand]
-  (and (staight? hand ) (flush? hand)))
+  (and (straight? hand ) (flush? hand)))
 
 (defn -main [& args]
   (time (let [deck (create-deck)

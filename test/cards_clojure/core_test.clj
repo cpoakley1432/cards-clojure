@@ -132,9 +132,9 @@
                {:suit :spades
                 :rank 3}
                {:suit :clubs
-                :rank 2}})
+                :rank 6}})
 
 (deftest straight-flush
   (testing "straight-flush resturns true if hand it straight-flush"
     (is (= true (staight-flush? hand-11)))
-    (is (= false (straight-flush? hand-12)))))
+    (is (= false (staight-flush? hand-12)))))
