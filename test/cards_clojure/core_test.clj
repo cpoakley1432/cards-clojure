@@ -115,3 +115,26 @@
   (testing "straight returns true if hand is straight"
     (is (= true (straight? hand-9)))
     (is (= false (straight? hand-10)))))
+
+(def hand-11 #{{:suit :clubs
+               :rank 2}
+              {:suit :clubs
+               :rank 3}
+              {:suit :clubs
+               :rank 4}
+              {:suit :clubs
+               :rank 5}})
+
+(def hand-12 #{{:suit :clubs
+                :rank 2}
+               {:suit :clubs
+                :rank 4}
+               {:suit :spades
+                :rank 3}
+               {:suit :clubs
+                :rank 2}})
+
+(deftest straight-flush
+  (testing "straight-flush resturns true if hand it straight-flush"
+    (is (= true (staight-flush? hand-11)))
+    (is (= false (straight-flush? hand-12)))))

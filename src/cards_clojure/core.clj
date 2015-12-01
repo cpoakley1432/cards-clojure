@@ -32,11 +32,15 @@
 (defn straight? [hand]
   (let [[min-value :as sorted] (sort (map :rank hand))] (= sorted (take 4 (iterate inc min-value)))))
 
+(defn staight-flush? [hand]
+  (and (staight? hand ) (flush? hand)))
+
 (defn -main [& args]
   (time (let [deck (create-deck)
          hands (create-hands deck)
          hands (filter flush? hands)
          hands (filter n-of-a-kind? hands)
          hands (filter two-pair? hands)
-         hands (filter straight? hands)]
+         hands (filter straight? hands)
+         hands (filter staight-flush? hands)]
      println (count hands))))
